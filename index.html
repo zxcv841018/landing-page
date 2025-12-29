@@ -1,13 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ellie Template</title>
+    <title>宜蘭親子玩樂地圖</title>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,400i,500,700|Titillium+Web:600" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/style.css">
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>
+        .section-header {
+            max-width: 720px;
+            margin: 0 auto 24px auto;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .attraction-card {
+            background: #1e1f21;
+            border: 1px solid rgba(69, 76, 76, 0.5);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 36px rgba(67, 83, 255, 0.25);
+        }
+
+        .attraction-image img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .attraction-content {
+            padding: 16px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .attraction-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .attraction-name {
+            margin: 0;
+            font-size: 22px;
+            line-height: 1.3;
+        }
+
+        .rating {
+            color: #43F1FF;
+            font-weight: 600;
+        }
+
+        .rating .reviews {
+            color: #768696;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        .card-summary {
+            color: #9CACBC;
+            margin: 0;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .meta-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(67, 83, 255, 0.08);
+            color: #dfe8ff;
+            font-size: 14px;
+            line-height: 1.2;
+            border: 1px solid rgba(67, 83, 255, 0.35);
+        }
+
+        .status {
+            color: #FFD166;
+            border-color: rgba(255, 209, 102, 0.4);
+            background: rgba(255, 209, 102, 0.08);
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .attraction-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .attraction-actions .button {
+            flex: 1;
+            justify-content: center;
+        }
+
+        @media (max-width: 640px) {
+            .attraction-actions .button {
+                flex-basis: 100%;
+            }
+        }
+    </style>
 </head>
 <body class="is-boxed">
     <div class="body-wrap boxed-container">
@@ -17,8 +137,8 @@
                     <div class="brand header-brand">
                         <h1 class="m-0">
                             <a href="#">
-								<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-								    <title>Ellie</title>
+							<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+							    <title>Ellie</title>
 								    <defs>
 								        <linearGradient x1="0%" y1="0%" y2="100%" id="logo-a">
 								            <stop stop-color="#4353FF" offset="0%"/>
@@ -40,7 +160,7 @@
 								        <path d="M11.5 20.5H.5v1h10v10h1v-11z" stroke="url(#logo-c)" transform="matrix(-1 0 0 1 12 0)"/>
 								        <path d="M31.5.5h-11v1h10v10h1V.5z" stroke="url(#logo-c)" transform="matrix(1 0 0 -1 0 12)"/>
 								    </g>
-								</svg>
+							</svg>
                             </a>
                         </h1>
                     </div>
@@ -53,16 +173,16 @@
                 <div class="container">
                     <div class="hero-inner">
 						<div class="hero-copy">
-	                        <h1 class="hero-title mt-0 is-revealing">Landing template for startups</h1>
-	                        <p class="hero-paragraph is-revealing">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
-							<div class="hero-form field field-grouped is-revealing">
-	                            <div class="control control-expanded">
-	                                <input class="input" type="email" name="email" placeholder="Your best email&hellip;">
-	                            </div>
-	                            <div class="control">
-	                                <a class="button button-primary button-block" href="#">Notify Me</a>
-	                            </div>
-	                        </div>
+	                        <h1 class="hero-title mt-0 is-revealing">宜蘭親子玩樂地圖</h1>
+	                        <p class="hero-paragraph is-revealing">精選宜蘭必玩親子景點、觀光工廠與室內樂園，帶著孩子出遊不用做功課，直接收藏好評地點與交通位置，一鍵導航出發。</p>
+                            <div class="hero-form field field-grouped is-revealing">
+                                <div class="control control-expanded">
+                                    <input class="input" type="text" name="search" placeholder="想找什麼景點？例如：室內、觀光工廠">
+                                </div>
+                                <div class="control">
+                                    <a class="button button-primary button-block" href="#attractions">開始探索</a>
+                                </div>
+                            </div>
 						</div>
 						<div class="hero-illustration">
 							<div class="hero-bg">
@@ -331,68 +451,156 @@
                 </div>
             </section>
 
-            <section class="features section">
+            <section id="attractions" class="features section">
                 <div class="container">
-                    <div class="features-inner section-inner">
-						<div class="features-wrap">
-	                        <div class="feature">
-	                            <div class="feature-inner">
-									<div class="feature-header mb-16">
-										<div class="feature-icon mr-16">
-											<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-											    <g fill-rule="nonzero" fill="none">
-											        <path d="M7 8H1a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1zM19 8h-6a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1z" fill="#4353FF"/>
-											        <path d="M19 20h-6a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1z" fill="#43F1FF"/>
-											        <path d="M31 8h-6a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1z" fill="#4353FF"/>
-											        <path d="M7 20H1a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1z" fill="#43F1FF"/>
-											        <path d="M7 32H1a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1z" fill="#4353FF"/>
-											        <path d="M29.5 18h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5z" fill="#43F1FF"/>
-											        <path d="M17.5 30h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5zM29.5 30h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5z" fill="#4353FF"/>
-											    </g>
-											</svg>
-		                                </div>
-		                                <h4 class="feature-title m-0">Discover</h4>
-									</div>
-	                                <p class="text-sm mb-0">A pseudo-Latin text used in web design, layout, and printing in place of things to emphasise design elements.</p>
-	                            </div>
-	                        </div>
-							<div class="feature">
-	                            <div class="feature-inner">
-									<div class="feature-header mb-16">
-										<div class="feature-icon mr-16">
-											<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-											    <g fill-rule="nonzero" fill="none">
-											        <path d="M4 12H0V5a5.006 5.006 0 0 1 5-5h7v4H5a1 1 0 0 0-1 1v7z" fill="#43F1FF"/>
-											        <path d="M32 12h-4V5a1 1 0 0 0-1-1h-7V0h7a5.006 5.006 0 0 1 5 5v7zM12 32H5a5.006 5.006 0 0 1-5-5v-7h4v7a1 1 0 0 0 1 1h7v4z" fill="#4353FF"/>
-											        <path d="M27 32h-7v-4h7a1 1 0 0 0 1-1v-7h4v7a5.006 5.006 0 0 1-5 5z" fill="#43F1FF"/>
-											    </g>
-											</svg>
-		                                </div>
-		                                <h4 class="feature-title m-0">Discover</h4>
-									</div>
-	                                <p class="text-sm mb-0">A pseudo-Latin text used in web design, layout, and printing in place of things to emphasise design elements.</p>
-	                            </div>
-	                        </div>
-							<div class="feature">
-	                            <div class="feature-inner">
-									<div class="feature-header mb-16">
-										<div class="feature-icon mr-16">
-											<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg">
-											    <g fill="none" fill-rule="nonzero">
-											        <path d="M16 9c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4z" fill="#4353FF"/>
-											        <path d="M27 9c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4z" fill="#43F1FF"/>
-											        <path d="M27 12c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4z" fill="#4353FF"/>
-											        <path d="M5 23c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4z" fill="#43F1FF"/>
-											        <path d="M27 23c-1.859 0-3.41 1.28-3.858 3h-3.284A3.994 3.994 0 0 0 17 23.142v-3.284c1.72-.447 3-2 3-3.858 0-2.206-1.794-4-4-4-1.859 0-3.41 1.28-3.858 3H8.858A3.994 3.994 0 0 0 6 12.142V8.858c1.72-.447 3-2 3-3.858 0-2.206-1.794-4-4-4S1 2.794 1 5c0 1.858 1.28 3.41 3 3.858v3.284c-1.72.447-3 2-3 3.858 0 2.206 1.794 4 4 4 1.859 0 3.41-1.28 3.858-3h3.284A3.994 3.994 0 0 0 15 19.858v3.284c-1.72.447-3 2-3 3.858 0 2.206 1.794 4 4 4 1.859 0 3.41-1.28 3.858-3h3.284c.447 1.72 2 3 3.858 3 2.206 0 4-1.794 4-4s-1.794-4-4-4z" fill="#4353FF"/>
-											    </g>
-											</svg>
-		                                </div>
-		                                <h4 class="feature-title m-0">Discover</h4>
-									</div>
-	                                <p class="text-sm mb-0">A pseudo-Latin text used in web design, layout, and printing in place of things to emphasise design elements.</p>
-	                            </div>
-	                        </div>
-						</div>
+                    <div class="section-inner">
+                        <div class="section-header text-center">
+                            <p class="text-primary m-0">Top Picks</p>
+                            <h2 class="mt-8 mb-8">熱門親子景點</h2>
+                            <p class="text-sm m-0">依照 Google 評價挑選的宜蘭親子景點清單，包含觀光工廠、室內遊樂場與打卡景點，直接點擊即可查看導航與詳細資訊。</p>
+                        </div>
+                        <div class="attractions-grid">
+                            <div class="attraction-card">
+                                <div class="attraction-image">
+                                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyklnSlm6M5IVYQML5r__Cm2WQ7HZaUpRn_nQm40ZqtRXs2s2FBjSQ00EdcPNHQlkHDGV1UYXIsmX7imtioxVS6CPK1gdpKWLCKtJeeRVz3aWxk-XxHzrUvq_hCcg8r9sso_kmS=w163-h92-k-no" alt="森學苑">
+                                </div>
+                                <div class="attraction-content">
+                                    <div class="attraction-top">
+                                        <h3 class="attraction-name">森學苑</h3>
+                                        <div class="rating">4.6 <span class="reviews">(568)</span></div>
+                                    </div>
+                                    <div class="meta-row">
+                                        <span class="meta-pill">旅遊景點</span>
+                                        <span class="meta-pill status">已打烊</span>
+                                    </div>
+                                    <p class="card-summary">德興七路1號</p>
+                                    <div class="card-footer">
+                                        <div class="attraction-actions">
+                                            <a class="button button-primary" href="https://www.google.com/maps/place/%E6%A3%AE%E5%AD%B8%E8%8B%91/data=!4m7!3m6!1s0x3467e995514c2fe7:0x13eb3b535abd071f!8m2!3d24.6349235!4d121.8300508!16s%2Fg%2F11r6_t8cls!19sChIJ5y9MUZXpZzQRHwe9WlM76xM?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">查看地圖</a>
+                                            <a class="button" href="https://www.google.com/maps/place/%E6%A3%AE%E5%AD%B8%E8%8B%91/data=!4m7!3m6!1s0x3467e995514c2fe7:0x13eb3b535abd071f!8m2!3d24.6349235!4d121.8300508!16s%2Fg%2F11r6_t8cls!19sChIJ5y9MUZXpZzQRHwe9WlM76xM?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">規劃路線</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="attraction-card">
+                                <div class="attraction-image">
+                                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSzPLpVBu8N2gUYhiUo9UmmSYhoTG-JJwF4YVbuYy2ZFgYU2dcJ5bAeFLI6dFQtOCuoALjtbP4ijpey0IpzokP1dPqle98BBvMFb5DC782MJjVFQjBpCpYO85QzWP1-0Osp7hoE=w122-h92-k-no" alt="大鯖魚夢工廠">
+                                </div>
+                                <div class="attraction-content">
+                                    <div class="attraction-top">
+                                        <h3 class="attraction-name">大鯖魚夢工廠</h3>
+                                        <div class="rating">4.4 <span class="reviews">(2,674)</span></div>
+                                    </div>
+                                    <div class="meta-row">
+                                        <span class="meta-pill">旅遊景點</span>
+                                        <span class="meta-pill status">已打烊</span>
+                                    </div>
+                                    <p class="card-summary">大圳路118號</p>
+                                    <div class="card-footer">
+                                        <div class="attraction-actions">
+                                            <a class="button button-primary" href="https://www.google.com/maps/place/%E5%A4%A7%E9%AF%96%E9%AD%9A%E5%A4%A2%E5%B7%A5%E5%BB%A0/data=!4m7!3m6!1s0x3467e9a1891b8a1d:0x8e09011c7b94e527!8m2!3d24.6134019!4d121.8326133!16s%2Fg%2F11j94djk3h!19sChIJHYobiaHpZzQRJ-WUexwBCY4?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">查看地圖</a>
+                                            <a class="button" href="https://www.google.com/maps/place/%E5%A4%A7%E9%AF%96%E9%AD%9A%E5%A4%A2%E5%B7%A5%E5%BB%A0/data=!4m7!3m6!1s0x3467e9a1891b8a1d:0x8e09011c7b94e527!8m2!3d24.6134019!4d121.8326133!16s%2Fg%2F11j94djk3h!19sChIJHYobiaHpZzQRJ-WUexwBCY4?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">規劃路線</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="attraction-card">
+                                <div class="attraction-image">
+                                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyiPfIFJTt3WhZ35AJcNuhwJi_mIpwn9lKE1FOZtjxpVW_tkpEaR0kNAkr8Q5Vuc8CiolDu-f5FeRroSEafVraI11tcK47QKTo0h1Po9QKg3M4DoRhIm8gn5qLdhQnZIaNctVuR=w122-h92-k-no" alt="歪歪球 Wild Wild Ball">
+                                </div>
+                                <div class="attraction-content">
+                                    <div class="attraction-top">
+                                        <h3 class="attraction-name">歪歪球 Wild Wild Ball</h3>
+                                        <div class="rating">4.8 <span class="reviews">(8,706)</span></div>
+                                    </div>
+                                    <div class="meta-row">
+                                        <span class="meta-pill">旅遊景點</span>
+                                        <span class="meta-pill status">已打烊</span>
+                                    </div>
+                                    <p class="card-summary">海山西路275號</p>
+                                    <div class="card-footer">
+                                        <div class="attraction-actions">
+                                            <a class="button button-primary" href="https://www.google.com/maps/place/%E6%AD%AA%E6%AD%AA%E7%90%83+Wild+Wild+Ball/data=!4m7!3m6!1s0x3467e919784a3985:0x47c7f149b3354d1!8m2!3d24.6129371!4d121.83167!16s%2Fg%2F11scfm98yf!19sChIJhTlKeBnpZzQR0VQzmxR_fAQ?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">查看地圖</a>
+                                            <a class="button" href="https://www.google.com/maps/place/%E6%AD%AA%E6%AD%AA%E7%90%83+Wild+Wild+Ball/data=!4m7!3m6!1s0x3467e919784a3985:0x47c7f149b3354d1!8m2!3d24.6129371!4d121.83167!16s%2Fg%2F11scfm98yf!19sChIJhTlKeBnpZzQR0VQzmxR_fAQ?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">規劃路線</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="attraction-card">
+                                <div class="attraction-image">
+                                    <img src="https://lh3.googleusercontent.com/p/AF1QipNUYCDi4gRoiMngsY2zUgmb0xhHpfC0V3S2A8Gz=w122-h92-k-no" alt="RobertY廢墟暴龍館">
+                                </div>
+                                <div class="attraction-content">
+                                    <div class="attraction-top">
+                                        <h3 class="attraction-name">RobertY廢墟暴龍館</h3>
+                                        <div class="rating">4.8 <span class="reviews">(8,964)</span></div>
+                                    </div>
+                                    <div class="meta-row">
+                                        <span class="meta-pill">旅遊景點</span>
+                                        <span class="meta-pill status">已打烊</span>
+                                        <span class="meta-pill">門市服務</span>
+                                    </div>
+                                    <p class="card-summary">新城一路30號</p>
+                                    <div class="card-footer">
+                                        <div class="attraction-actions">
+                                            <a class="button button-primary" href="https://www.google.com/maps/place/RobertY%E5%BB%A2%E5%A2%9F%E6%9A%B4%E9%BE%8D%E9%A4%A8-%E7%9C%9F%E6%9A%B4%E9%BE%8D%E5%8C%96%E7%9F%B3+%E5%AF%A6%E5%A2%83VR+DIY%E9%AB%94%E9%A9%97+%E5%B0%8B%E5%AF%B6%E9%81%8A%E6%88%B2+%E5%AF%A6%E5%A2%83%E8%A7%A3%E8%AC%8E+%E5%AF%86%E5%AE%A4%E9%80%83%E8%84%AB+%28%E6%AD%A1%E8%BF%8E%E6%94%9C%E5%B8%B6%E5%AF%B5%E7%89%A9%E4%B8%8D%E8%90%BD%E5%9C%B0%E5%8D%B3%E5%8F%AF%29/data=!4m7!3m6!1s0x3467e86570c000cf:0x7a229b216b93a6c5!8m2!3d24.6157499!4d121.8243776!16s%2Fg%2F11c6vr03gy!19sChIJzwDAcGXoZzQRxaaTayGbIno?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">查看地圖</a>
+                                            <a class="button" href="https://www.google.com/maps/place/RobertY%E5%BB%A2%E5%A2%9F%E6%9A%B4%E9%BE%8D%E9%A4%A8-%E7%9C%9F%E6%9A%B4%E9%BE%8D%E5%8C%96%E7%9F%B3+%E5%AF%A6%E5%A2%83VR+DIY%E9%AB%94%E9%A9%97+%E5%B0%8B%E5%AF%B6%E9%81%8A%E6%88%B2+%E5%AF%A6%E5%A2%83%E8%A7%A3%E8%AC%8E+%E5%AF%86%E5%AE%A4%E9%80%83%E8%84%AB+%28%E6%AD%A1%E8%BF%8E%E6%94%9C%E5%B8%B6%E5%AF%B5%E7%89%A9%E4%B8%8D%E8%90%BD%E5%9C%B0%E5%8D%B3%E5%8F%AF%29/data=!4m7!3m6!1s0x3467e86570c000cf:0x7a229b216b93a6c5!8m2!3d24.6157499!4d121.8243776!16s%2Fg%2F11c6vr03gy!19sChIJzwDAcGXoZzQRxaaTayGbIno?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">規劃路線</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="attraction-card">
+                                <div class="attraction-image">
+                                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwCrKtl41JH_8ySRCk8-yRaeUmokQ2edPz-DoKy-PME4HN4Gh_7QQM6-cH9mCv-3ht0-G_0qhfOa_kziVXQ45gehaGJWyhMYg9OwAAmlWVEYJzlm215TCefngYIhh7yeOAAdsel=w122-h92-k-no" alt="宜蘭童樂親子館">
+                                </div>
+                                <div class="attraction-content">
+                                    <div class="attraction-top">
+                                        <h3 class="attraction-name">宜蘭童樂親子館</h3>
+                                        <div class="rating">5.0 <span class="reviews">(1,824)</span></div>
+                                    </div>
+                                    <div class="meta-row">
+                                        <span class="meta-pill">室內遊樂場</span>
+                                        <span class="meta-pill status">已打烊</span>
+                                        <span class="meta-pill">門市服務</span>
+                                    </div>
+                                    <p class="card-summary">宜興路一段159號2樓</p>
+                                    <div class="card-footer">
+                                        <div class="attraction-actions">
+                                            <a class="button button-primary" href="https://www.google.com/maps/place/%E5%AE%9C%E8%98%AD%E7%AB%A5%E6%A8%82%E8%A6%AA%E5%AD%90%E9%A4%A8/data=!4m7!3m6!1s0x3467e5006a0c1a6f:0x3a61086bb42a6483!8m2!3d24.752582!4d121.7563871!16s%2Fg%2F11vsq0lky0!19sChIJbxoMagDlZzQRg2QqtGsIYTo?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">查看地圖</a>
+                                            <a class="button" href="https://www.google.com/maps/place/%E5%AE%9C%E8%98%AD%E7%AB%A5%E6%A8%82%E8%A6%AA%E5%AD%90%E9%A4%A8/data=!4m7!3m6!1s0x3467e5006a0c1a6f:0x3a61086bb42a6483!8m2!3d24.752582!4d121.7563871!16s%2Fg%2F11vsq0lky0!19sChIJbxoMagDlZzQRg2QqtGsIYTo?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">規劃路線</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="attraction-card">
+                                <div class="attraction-image">
+                                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxGZii1dh1PSSbwCSUEIc9xFDdmG3Z2NiqMCb98fcIxu6GTuLCbnN9hBm-o8-enPD2OC26vLyNrB5r1654UcGgmYUNf4_F4meI100usncyjr5l3XGr5jnZ-4YDVWY-xne-kITKM=w163-h92-k-no" alt="空氣島彈跳工廠">
+                                </div>
+                                <div class="attraction-content">
+                                    <div class="attraction-top">
+                                        <h3 class="attraction-name">空氣島彈跳工廠</h3>
+                                        <div class="rating">4.2 <span class="reviews">(2,485)</span></div>
+                                    </div>
+                                    <div class="meta-row">
+                                        <span class="meta-pill">娛樂中心</span>
+                                        <span class="meta-pill status">已打烊</span>
+                                        <span class="meta-pill">內用</span>
+                                    </div>
+                                    <p class="card-summary">港區路8號</p>
+                                    <div class="card-footer">
+                                        <div class="attraction-actions">
+                                            <a class="button button-primary" href="https://www.google.com/maps/place/%E7%A9%BA%E6%B0%A3%E5%B3%B6%E5%BD%88%E8%B7%B3%E5%B7%A5%E5%BB%A0/data=!4m7!3m6!1s0x3467e90b6b2f868b:0x8ac84452066c22b1!8m2!3d24.5958591!4d121.856755!16s%2Fg%2F11tjpj612r!19sChIJi4YvawvpZzQRsSJsBlJEyIo?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">查看地圖</a>
+                                            <a class="button" href="https://www.google.com/maps/place/%E7%A9%BA%E6%B0%A3%E5%B3%B6%E5%BD%88%E8%B7%B3%E5%B7%A5%E5%BB%A0/data=!4m7!3m6!1s0x3467e90b6b2f868b:0x8ac84452066c22b1!8m2!3d24.5958591!4d121.856755!16s%2Fg%2F11tjpj612r!19sChIJi4YvawvpZzQRsSJsBlJEyIo?authuser=0&hl=zh-TW&rclk=1" target="_blank" rel="noopener">規劃路線</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
